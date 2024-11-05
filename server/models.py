@@ -75,5 +75,8 @@ class Review(db.Model):
     date = db.Column(db.DateTime, nullable=False)
     status = db.Column(Enum('approved', 'rejected', 'pending', name='status'), nullable=False)
     
+    admin = db.relationship('Admin', backref='reviews')
+    organization = db.relationship('Organization', backref='reviews')
+    
     def __repr__(self):
         return f'<Review {self.status}>'
